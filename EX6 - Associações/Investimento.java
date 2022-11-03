@@ -19,6 +19,6 @@ public class Investimento extends Conta{
     @Override
     public void resumoExtrato() {
         super.resumoExtrato();
-        System.out.println("Taxa de Rendimento: R$" + this.taxaRendimento);
+        System.out.println("Taxa de Rendimento: " + this.taxaRendimento);
     }
 }
