@@ -17,10 +17,11 @@ public class ProductReview extends Post implements Evaluable {
 
     @Override
     public void evaluate(int value) {
-        if(value > 10 || value < 1) {
-            System.out.println("Avalie o produto de 1 a 10 estrelas");
-        } else {
+        if(value <= 10 && value >= 1) {
             this.stars = value;
+        } 
+        else {
+            System.out.println("Avalie o produto de 1 a 10 estrelas");
         }
     }
     

@@ -60,7 +60,7 @@ public class Blog {
                     ProductReview productReview = new ProductReview();
                     Post postProductReview = productReview;
                     blog.readData(postProductReview, sc);
-                    if (productReview.getStars() > 0 || productReview.getStars() < 10) {
+                    if (productReview.getStars() >= 1 && productReview.getStars() <= 10) {
                         blog.posts.add(postProductReview);
                     }
                     break;
@@ -70,17 +70,26 @@ public class Blog {
                     blog.posts.add(generalPost);
                     break;
                 case 4:
+                    System.out.println();
                     blog.showAll();
+                    if (blog.posts.size() == 0) {
+                        System.out.println("Nenhuma postagem cadastrada");
+                        System.out.println();
+                    }
                     break;
                 case 5:
                     System.out.print("Digite o indice da postagem: ");
                     int index = sc.nextInt();
                     sc.nextLine();
                     if(index < 0 || index >= blog.posts.size()) {
+                        System.out.println();
                         System.out.println("Codigo invalido, postagem inexistente");
+                        System.out.println();
                     } else {
                         blog.posts.get(index).like();
+                        System.out.println();
                         System.out.println("Postagem curtida!");
+                        System.out.println();
                     }
                     break;
                 case 6:
@@ -88,17 +97,25 @@ public class Blog {
                     index = sc.nextInt();
                     sc.nextLine();
                     if(index < 0 || index >= blog.posts.size()) {
+                        System.out.println();
                         System.out.println("Codigo invalido, postagem inexistente");
+                        System.out.println();
                     } else {
                         blog.posts.get(index).dislike();
+                        System.out.println();
                         System.out.println("Postagem não curtida!");
+                        System.out.println();
                     }
                     break;
                 case 10:
+                    System.out.println();
                     System.out.println("Fim do programa");
+                    System.out.println();
                     break;
                 default:
+                    System.out.println();
                     System.out.println("Opção inválida");
+                    System.out.println();
                     break;
             }
         } while (option != 10);
