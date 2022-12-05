@@ -72,41 +72,57 @@ public class Blog {
                 case 4:
                     System.out.println();
                     blog.showAll();
-                    if (blog.posts.size() == 0) {
+                    if (blog.posts.isEmpty()) {
                         System.out.println("Nenhuma postagem cadastrada");
                         System.out.println();
                     }
                     break;
                 case 5:
-                    System.out.print("Digite o indice da postagem: ");
-                    int index = sc.nextInt();
-                    sc.nextLine();
-                    if(index < 0 || index >= blog.posts.size()) {
+                    if (!blog.posts.isEmpty()) {
+                        System.out.print("Digite o indice da postagem: ");
+                        int index = sc.nextInt();
+                        sc.nextLine();
+                        if(index < 0 || index >= blog.posts.size()) {
+                            System.out.println();
+                            System.out.println("Codigo invalido, postagem inexistente");
+                            System.out.println();
+                        } else {
+                            blog.posts.get(index).like();
+                            System.out.println();
+                            System.out.println("Postagem curtida!");
+                            System.out.println();
+                        }
+                        break;
+                    } 
+                    else {
                         System.out.println();
-                        System.out.println("Codigo invalido, postagem inexistente");
+                        System.out.println("Nenhuma postagem cadastrada");
                         System.out.println();
-                    } else {
-                        blog.posts.get(index).like();
-                        System.out.println();
-                        System.out.println("Postagem curtida!");
-                        System.out.println();
+                        break;
                     }
-                    break;
                 case 6:
-                    System.out.print("Digite o indice da postagem: ");
-                    index = sc.nextInt();
-                    sc.nextLine();
-                    if(index < 0 || index >= blog.posts.size()) {
+                    if (!blog.posts.isEmpty()) {
+                        System.out.print("Digite o indice da postagem: ");
+                        int index = sc.nextInt();
+                        sc.nextLine();
+                        if(index < 0 || index >= blog.posts.size()) {
+                            System.out.println();
+                            System.out.println("Codigo invalido, postagem inexistente");
+                            System.out.println();
+                        } else {
+                            blog.posts.get(index).dislike();
+                            System.out.println();
+                            System.out.println("Postagem não curtida!");
+                            System.out.println();
+                        }
+                        break;
+                    } 
+                    else {
                         System.out.println();
-                        System.out.println("Codigo invalido, postagem inexistente");
+                        System.out.println("Nenhuma postagem cadastrada");
                         System.out.println();
-                    } else {
-                        blog.posts.get(index).dislike();
-                        System.out.println();
-                        System.out.println("Postagem não curtida!");
-                        System.out.println();
+                        break;
                     }
-                    break;
                 case 10:
                     System.out.println();
                     System.out.println("Fim do programa");

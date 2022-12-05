@@ -28,7 +28,7 @@ public class ProductReview extends Post implements Evaluable {
     @Override
     public void show() {
         super.show();
-        System.out.println("Brand: " + brand);
-        System.out.println("Stars: " + stars);
+        System.out.println("Marca: " + brand);
+        System.out.println("Estrelas: " + stars);
     }    
 }

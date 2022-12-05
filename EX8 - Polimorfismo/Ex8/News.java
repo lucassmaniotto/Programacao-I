@@ -13,6 +13,6 @@ public class News extends Post{
     @Override
     public void show() {
         super.show();
-        System.out.println("News Source: " + source);
+        System.out.println("Fonte da notícia: " + source);
     }
 }
