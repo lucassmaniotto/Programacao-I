@@ -1,4 +1,4 @@
-package Ex4;
+package Static;
 public class Acampamento {
     private String nome;
     private int idade;

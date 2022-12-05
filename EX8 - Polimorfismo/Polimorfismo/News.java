@@ -1,4 +1,4 @@
-package Ex8;
+package Polimorfismo;
 public class News extends Post{
     private String source;
 

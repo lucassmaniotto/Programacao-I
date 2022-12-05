@@ -1,4 +1,4 @@
-package Ex8;
+package Polimorfismo;
 public interface Evaluable {
     public void evaluate(int value);
 }

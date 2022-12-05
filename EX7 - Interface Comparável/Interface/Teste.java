@@ -1,4 +1,4 @@
-package Ex7;
+package Interface;
 public class Teste {
     public static void main(String[] args) {
         Conjunto c1 = new Conjunto(2, 5);

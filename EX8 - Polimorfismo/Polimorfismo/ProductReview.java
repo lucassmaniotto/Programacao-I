@@ -1,4 +1,4 @@
-package Ex8;
+package Polimorfismo;
 public class ProductReview extends Post implements Evaluable {
     private String brand;
     private int stars;
