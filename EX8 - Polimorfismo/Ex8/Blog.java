@@ -1,5 +1,6 @@
 package Ex8;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Blog {
@@ -15,6 +16,11 @@ public class Blog {
     public void readData(Post p, Scanner sc) {
         System.out.print("Informe o título do post: ");
         p.setTitle(sc.nextLine());
+        for (Post post : posts) {
+            if(post.getTitle().equals(p.getTitle())) {
+                throw new RuntimeException("Titulo já cadastrado");
+            }
+        }
         System.out.print("Informe o conteúdo do post: ");
         p.setContent(sc.nextLine());
         p.setDate();
@@ -38,88 +44,102 @@ public class Blog {
         Scanner sc = new Scanner(System.in);
         int option = 0;
         do {
-            System.out.println("1 - Novo post de noticia");
-            System.out.println("2 - Nova resenha de produto");
-            System.out.println("3 - Novo post de outros assuntos");
-            System.out.println("4 - Listar todas as postagens");
-            System.out.println("5 - Curtir uma postagem");
-            System.out.println("6 - Não curtir uma postagem");
-            System.out.println("10 - Sair");
-            System.out.print("Escolha uma opção: ");
-            option = sc.nextInt();
-            sc.nextLine();
+            try {
+                System.out.println("1 - Novo post de noticia");
+                System.out.println("2 - Nova resenha de produto");
+                System.out.println("3 - Novo post de outros assuntos");
+                System.out.println("4 - Listar todas as postagens");
+                System.out.println("5 - Curtir uma postagem");
+                System.out.println("6 - Não curtir uma postagem");
+                System.out.println("10 - Sair");
+                System.out.println("Escolha uma opção: ");
+                option = sc.nextInt();
+                sc.nextLine();
 
-            switch (option) {
-                case 1:
-                    News news = new News();
-                    Post postNews = news;
-                    blog.readData(postNews, sc);
-                    blog.posts.add(postNews);
-                    break;
-                case 2:
-                    ProductReview productReview = new ProductReview();
-                    Post postProductReview = productReview;
-                    blog.readData(postProductReview, sc);
-                    if (productReview.getStars() >= 1 && productReview.getStars() <= 10) {
-                        blog.posts.add(postProductReview);
-                    }
-                    break;
-                case 3:
-                    Post generalPost = new Post();
-                    blog.readData(generalPost, sc);
-                    blog.posts.add(generalPost);
-                    break;
-                case 4:
-                    System.out.println();
-                    blog.showAll();
-                    if (blog.posts.size() == 0) {
-                        System.out.println("Nenhuma postagem cadastrada");
+                switch (option) {
+                    case 1:
+                        News news = new News();
+                        Post postNews = news;
+                        blog.readData(postNews, sc);
+                        blog.posts.add(postNews);
+                        break;
+                    case 2:
+                        ProductReview productReview = new ProductReview();
+                        Post postProductReview = productReview;
+                        blog.readData(postProductReview, sc);
+                        if (productReview.getStars() >= 1 && productReview.getStars() <= 10) {
+                            blog.posts.add(postProductReview);
+                        }
+                        break;
+                    case 3:
+                        Post generalPost = new Post();
+                        blog.readData(generalPost, sc);
+                        blog.posts.add(generalPost);
+                        break;
+                    case 4:
                         System.out.println();
-                    }
-                    break;
-                case 5:
-                    System.out.print("Digite o indice da postagem: ");
-                    int index = sc.nextInt();
-                    sc.nextLine();
-                    if(index < 0 || index >= blog.posts.size()) {
+                        blog.showAll();
+                        if (blog.posts.size() == 0) {
+                            System.out.println("Nenhuma postagem cadastrada");
+                            System.out.println();
+                        }
+                        break;
+                    case 5:
+                        try {
+                            System.out.print("Digite o indice da postagem: ");
+                            int index = sc.nextInt();
+                            sc.nextLine();
+                            blog.posts.get(index).like();
+                            System.out.println();
+                            System.out.println("Postagem curtida!");
+                            System.out.println();
+                        } catch (InputMismatchException e) {
+                            System.out.println();
+                            System.out.println("Entrada invalida! Utilize apenas numeros inteiros");
+                            System.out.println();
+                        } catch (IndexOutOfBoundsException e) {
+                            System.out.println();
+                            System.out.println("Codigo invalido, postagem inexistente");
+                            System.out.println();
+                        } 
+                        break;
+                    case 6:
+                        try {
+                            System.out.print("Digite o indice da postagem: ");
+                            int index = sc.nextInt();
+                            sc.nextLine();
+                            blog.posts.get(index).dislike();
+                            System.out.println();
+                            System.out.println("Postagem não curtida!");
+                            System.out.println();
+                        } catch (InputMismatchException e) {
+                            System.out.println();
+                            System.out.println("Entrada invalida! Utilize apenas numeros inteiros");
+                            System.out.println();
+                        } catch (IndexOutOfBoundsException e) {
+                            System.out.println();
+                            System.out.println("Codigo invalido, postagem inexistente");
+                            System.out.println();
+                        } 
+                        break;
+                    case 10:
                         System.out.println();
-                        System.out.println("Codigo invalido, postagem inexistente");
+                        System.out.println("Fim do programa");
                         System.out.println();
-                    } else {
-                        blog.posts.get(index).like();
+                        break;
+                    default:
                         System.out.println();
-                        System.out.println("Postagem curtida!");
+                        System.out.println("Opção inválida");
                         System.out.println();
-                    }
-                    break;
-                case 6:
-                    System.out.print("Digite o indice da postagem: ");
-                    index = sc.nextInt();
-                    sc.nextLine();
-                    if(index < 0 || index >= blog.posts.size()) {
-                        System.out.println();
-                        System.out.println("Codigo invalido, postagem inexistente");
-                        System.out.println();
-                    } else {
-                        blog.posts.get(index).dislike();
-                        System.out.println();
-                        System.out.println("Postagem não curtida!");
-                        System.out.println();
-                    }
-                    break;
-                case 10:
-                    System.out.println();
-                    System.out.println("Fim do programa");
-                    System.out.println();
-                    break;
-                default:
-                    System.out.println();
-                    System.out.println("Opção inválida");
-                    System.out.println();
-                    break;
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println();
+                System.out.println("Entrada invalida! Utilize apenas numeros inteiros");
+                System.out.println();
+                sc.nextLine();
             }
-        } while (option != 10);
-        
+        } while (option != 10);        
         sc.close();
     }
 }
