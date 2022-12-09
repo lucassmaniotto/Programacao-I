@@ -1,4 +1,4 @@
-package Ex8;
+package Polimorfismo;
 import java.util.Date;
 
 public class Post {
@@ -49,9 +49,9 @@ public class Post {
     }
 
     public void show() {
-        System.out.println("Title: " + title);
-        System.out.println("Date: " + date);
-        System.out.println("Content: " + content);
+        System.out.println("Título: " + title);
+        System.out.println("Data: " + date);
+        System.out.println("Conteúdo: " + content);
         System.out.println("Likes: " + likes);
         System.out.println("Dislikes: " + dislikes);
     }

@@ -1,4 +1,4 @@
-package Ex7;
+package Interface;
 public class Conjunto implements Comparavel{
     private int elemento1;
     private int elemento2;

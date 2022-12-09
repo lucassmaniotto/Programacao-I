@@ -1,4 +1,4 @@
-package Ex7;
+package Interface;
 public class Data implements Comparavel {
     private int dia;
     private int mes;

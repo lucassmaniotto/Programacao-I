@@ -1,4 +1,4 @@
-package Ex7;
+package Interface;
 public interface Comparavel {
     public boolean maior(Comparavel obj);
     public boolean menor(Comparavel obj);

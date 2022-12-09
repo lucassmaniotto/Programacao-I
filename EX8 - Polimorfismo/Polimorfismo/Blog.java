@@ -1,4 +1,4 @@
-package Ex8;
+package Polimorfismo;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -56,6 +56,7 @@ public class Blog {
                 option = sc.nextInt();
                 sc.nextLine();
 
+<<<<<<< HEAD:EX8 - Polimorfismo/Ex8/Blog.java
                 switch (option) {
                     case 1:
                         News news = new News();
@@ -89,10 +90,51 @@ public class Blog {
                             System.out.print("Digite o indice da postagem: ");
                             int index = sc.nextInt();
                             sc.nextLine();
+=======
+            switch (option) {
+                case 1:
+                    News news = new News();
+                    Post postNews = news;
+                    blog.readData(postNews, sc);
+                    blog.posts.add(postNews);
+                    break;
+                case 2:
+                    ProductReview productReview = new ProductReview();
+                    Post postProductReview = productReview;
+                    blog.readData(postProductReview, sc);
+                    if (productReview.getStars() >= 1 && productReview.getStars() <= 10) {
+                        blog.posts.add(postProductReview);
+                    }
+                    break;
+                case 3:
+                    Post generalPost = new Post();
+                    blog.readData(generalPost, sc);
+                    blog.posts.add(generalPost);
+                    break;
+                case 4:
+                    System.out.println();
+                    blog.showAll();
+                    if (blog.posts.isEmpty()) {
+                        System.out.println("Nenhuma postagem cadastrada");
+                        System.out.println();
+                    }
+                    break;
+                case 5:
+                    if (!blog.posts.isEmpty()) {
+                        System.out.print("Digite o indice da postagem: ");
+                        int index = sc.nextInt();
+                        sc.nextLine();
+                        if(index < 0 || index >= blog.posts.size()) {
+                            System.out.println();
+                            System.out.println("Codigo invalido, postagem inexistente");
+                            System.out.println();
+                        } else {
+>>>>>>> eb51f0aacacf664e00b4855f095f0133c369307d:EX8 - Polimorfismo/Polimorfismo/Blog.java
                             blog.posts.get(index).like();
                             System.out.println();
                             System.out.println("Postagem curtida!");
                             System.out.println();
+<<<<<<< HEAD:EX8 - Polimorfismo/Ex8/Blog.java
                         } catch (InputMismatchException e) {
                             System.out.println();
                             System.out.println("Entrada invalida! Utilize apenas numeros inteiros");
@@ -138,6 +180,50 @@ public class Blog {
                 System.out.println("Entrada invalida! Utilize apenas numeros inteiros");
                 System.out.println();
                 sc.nextLine();
+=======
+                        }
+                        break;
+                    } 
+                    else {
+                        System.out.println();
+                        System.out.println("Nenhuma postagem cadastrada");
+                        System.out.println();
+                        break;
+                    }
+                case 6:
+                    if (!blog.posts.isEmpty()) {
+                        System.out.print("Digite o indice da postagem: ");
+                        int index = sc.nextInt();
+                        sc.nextLine();
+                        if(index < 0 || index >= blog.posts.size()) {
+                            System.out.println();
+                            System.out.println("Codigo invalido, postagem inexistente");
+                            System.out.println();
+                        } else {
+                            blog.posts.get(index).dislike();
+                            System.out.println();
+                            System.out.println("Postagem não curtida!");
+                            System.out.println();
+                        }
+                        break;
+                    } 
+                    else {
+                        System.out.println();
+                        System.out.println("Nenhuma postagem cadastrada");
+                        System.out.println();
+                        break;
+                    }
+                case 10:
+                    System.out.println();
+                    System.out.println("Fim do programa");
+                    System.out.println();
+                    break;
+                default:
+                    System.out.println();
+                    System.out.println("Opção inválida");
+                    System.out.println();
+                    break;
+>>>>>>> eb51f0aacacf664e00b4855f095f0133c369307d:EX8 - Polimorfismo/Polimorfismo/Blog.java
             }
         } while (option != 10);        
         sc.close();

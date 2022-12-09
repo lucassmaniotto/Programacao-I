@@ -1,4 +1,4 @@
-package Ex4;
+package Static;
 import java.util.ArrayList;
 import java.util.Scanner;
 
