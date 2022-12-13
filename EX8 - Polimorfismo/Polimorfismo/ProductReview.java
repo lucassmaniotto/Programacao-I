@@ -21,7 +21,9 @@ public class ProductReview extends Post implements Evaluable {
             this.stars = value;
         } 
         else {
-            System.out.println("Avalie o produto de 1 a 10 estrelas");
+            System.out.println();
+            System.out.println("O produto só pode ser avaliado de 1 a 10 estrelas!");
+            System.out.println();
         }
     }
     

@@ -13,7 +13,7 @@ public class Blog {
         }
     }
 
-    public void readData(Post p, Scanner sc) {
+    public void readData (Post p, Scanner sc) throws RuntimeException, InputMismatchException {
         System.out.print("Informe o título do post: ");
         p.setTitle(sc.nextLine());
         for (Post post : posts) {
@@ -33,7 +33,12 @@ public class Blog {
             System.out.print("Informe a marca do produto: ");
             ((ProductReview) p).setBrand(sc.nextLine());
             System.out.print("Avalie o produto entre 1 a 10 estrelas: ");
-            ((ProductReview) p).evaluate(Integer.parseInt(sc.nextLine()));
+            if (sc.hasNextInt()) {
+                ((ProductReview) p).evaluate(Integer.parseInt(sc.nextLine()));
+            }
+            else {
+                throw new InputMismatchException("Entrada invalida! Utilize apenas numeros inteiros");
+            }
         }
 
         System.out.println();
@@ -52,10 +57,10 @@ public class Blog {
                 System.out.println("5 - Curtir uma postagem");
                 System.out.println("6 - Não curtir uma postagem");
                 System.out.println("10 - Sair");
-                System.out.println("Escolha uma opção: ");
+                System.out.print("Escolha uma opção: ");
                 option = sc.nextInt();
                 sc.nextLine();
-
+                
                 switch (option) {
                     case 1:
                         News news = new News();
@@ -79,7 +84,7 @@ public class Blog {
                     case 4:
                         System.out.println();
                         blog.showAll();
-                        if (blog.posts.size() == 0) {
+                        if (blog.posts.isEmpty()) {
                             System.out.println("Nenhuma postagem cadastrada");
                             System.out.println();
                         }
@@ -150,6 +155,10 @@ public class Blog {
                 System.out.println("Entrada invalida! Utilize apenas numeros inteiros");
                 System.out.println();
                 sc.nextLine();
+            } catch (RuntimeException e) {
+                System.out.println();
+                System.out.println(e.getMessage());
+                System.out.println();
             }
         } while (option != 10);        
         sc.close();
